@@ -76,3 +76,36 @@ If this is left as default then the reports will be named
 |===
 
 depending on which options are enabled.
+
+== Building & Testing
+
+=== Build
+To build the plugin you can use the standard Gradle commands of
+
+[source,bash]
+----
+./gradlew jar
+----
+
+To publish to your local maven repository
+
+[source,bash]
+----
+./gradlew publish
+----
+
+If the version is set with "-SNAPSHOT" it will automatically publish locally to a sub-directory called repo.
+
+=== Local Testing
+
+To perform testing local you can run the Gradle build in the demo sub-directory. This will use the ./repo directory to source the plugin for testing.
+
+Another way to test the plugin is to run the following from teh root directory.
+
+[source,bash]
+----
+./gradlew test functionalTest
+----
+
+This will run JUnit tests and will trigger TestKit tests with the functionalTest task.
+
