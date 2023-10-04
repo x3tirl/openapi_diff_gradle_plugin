@@ -34,10 +34,16 @@ dependencies {
 }
 
 gradlePlugin {
+    website.set("https://github.com/x3tirl/openapi_diff_gradle_plugin")
+    vcsUrl.set("https://github.com/x3tirl/openapi_diff_gradle_plugin")
+
     plugins {
         openapi_diff {
             id = 'com.x3t.gradle.plugins.openapi.openapi_diff'
             implementationClass = 'com.x3t.gradle.plugins.openapi.OpenapiDiffPlugin'
+            displayName = "OpenAPI Diff Gradle Plugin"
+            description = "OpenAPI Diff PLugin allows the comparison of API Specification files in OpenAPI Spec (v2, v3)format."
+            tags.set(listOf("openapi", "openapi-3.0", "openapi-2.0", "diff", "kotlin", "plugin"))
         }
     }
 }

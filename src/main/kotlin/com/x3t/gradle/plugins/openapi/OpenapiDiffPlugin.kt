@@ -16,7 +16,7 @@ class OpenapiDiffPlugin : Plugin<Project> {
             it.textReport.set(diffExtention.textReport)
             it.markdownReport.set(diffExtention.markdownReport)
             it.reportName.set(diffExtention.reportName)
-            it.oldFile.set(diffExtention.oldFile)
+            it.originalFile.set(diffExtention.originalFile)
             it.newFile.set(diffExtention.newFile)
 
 
