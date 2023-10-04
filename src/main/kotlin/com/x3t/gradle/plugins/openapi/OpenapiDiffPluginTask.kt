@@ -52,8 +52,8 @@ abstract class OpenapiDiffPluginTask @Inject constructor(private val objectFacto
     abstract val reportName : Property<String>
 
     @get:Input
-    @get:Option(option = "oldFile", description = "The original OpenAPI specification file")
-    abstract val oldFile : Property<String>
+    @get:Option(option = "originalFile", description = "The original OpenAPI specification file")
+    abstract val originalFile : Property<String>
 
     @get:Input
     @get:Option(option = "newFile", description = "The new OpenAPI specification file")
@@ -105,7 +105,7 @@ abstract class OpenapiDiffPluginTask @Inject constructor(private val objectFacto
     @TaskAction
     fun doWork() {
         val auths: List<AuthorizationValue>? = null
-        val result = OpenApiCompare.fromLocations(oldFile.get(), newFile.get(), auths)
+        val result = OpenApiCompare.fromLocations(originalFile.get(), newFile.get(), auths)
         val outputFile: String
 
         if(reportName.isPresent) {

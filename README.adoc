@@ -5,7 +5,7 @@ The
 https://github.com/OpenAPITools/openapi-diff[OpenAPI Diff Tool] is useful in comparing 2 specifications. As part of the original repository a maven plugin is included but for those of us that prefer Gradle there was no plugin to be found. This repository contains the code to implement such a plugin.
 
 
-The plugin has been implemented with an Extention, allowing for teh configuration options to be passed in a block assigned with "openapi_diff", and can be used in the build.gradle file
+The plugin has been implemented with an Extension, allowing for teh configuration options to be passed in a block assigned with "openapi_diff", and can be used in the build.gradle file
 
 [source,groovy]
 ----
@@ -14,7 +14,7 @@ plugins {
 }
 
 openapi_diff {
-    oldFile = "old_specification.yaml"
+    originalFile = "old_specification.yaml"
     newFile = "new_specification.yaml"
 }
 ----
@@ -28,9 +28,51 @@ plugins {
 }
 
 task triggerCompatible(type: com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTask){
-    oldFile = "old_specification.yaml"
+    originalFile = "old_specification.yaml"
     newFile = "new_specification.yaml"
 }
 ----
 
 == Options
+
+[%header,cols="1,1,1,1,3"]
+|===
+|Property name
+|Type
+|Default Value
+|Required
+|Description
+
+|originalFile |Property<String> |"" |Yes |Filename for the original version of the specification.
+
+|newFile |Property<String> |"" |Yes |Filename for the original version of the specification.
+
+|failOnChange |Property<Boolean> |false |No |Set to true if you wish for the build to fail on any changes.
+
+
+|failOnIncompatible |Property<Boolean> |false |No |Set to ture if you wish for the build to fail on incompatible changes.
+
+|htmlReport |Property<Boolean> |false |No |Enable to create a comparison report in HTML format.
+
+|jsonReport |Property<Boolean> |false |No |Enable to create a comparison report in JSON format.
+
+|textReport |Property<Boolean> |false |No |Enable to create a comparison report Plaintext format.
+
+|markdownReport |Property<Boolean> |false |No |Enable to create a comparison report Markdown format.
+
+|reportName |Property<String> | "build/Openapi_Diff_Report" |No |The location and name to use for any report file.
+|===
+
+NOTE: The reportName property is used in the creation of the report files.
+
+If this is left as default then the reports will be named
+
+[rows="1,1,1,1"]
+|===
+|"build/Openapi_Diff_Report.txt"
+|"build/Openapi_Diff_Report.json"
+|"build/Openapi_Diff_Report.md"
+|"build/Openapi_Diff_Report.html"
+|===
+
+depending on which options are enabled.
