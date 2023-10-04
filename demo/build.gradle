@@ -1,0 +1,28 @@
+plugins {
+    id 'com.x3t.gradle.plugins.openapi.openapi_diff'
+}
+
+openapi_diff {
+    oldFile = "${projectDir}/missing_property_1.yaml"
+    newFile = "${projectDir}/missing_property_2.yaml"
+}
+
+task triggerCompatible(type: com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTask){
+    oldFile = "${projectDir}/missing_property_1.yaml"
+    newFile = "${projectDir}/missing_property_2.yaml"
+    failOnIncompatible.set(true)
+}
+
+task triggerFailOnChange(type: com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTask){
+    oldFile = "${projectDir}/missing_property_1.yaml"
+    newFile = "${projectDir}/missing_property_2.yaml"
+    failOnChange.set(true)
+}
+
+task createTextReport(type: com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTask){
+    oldFile = "${projectDir}/missing_property_1.yaml"
+    newFile = "${projectDir}/missing_property_2.yaml"
+    textReport.set(true)
+}
+
+task testTasks(dependsOn: ['triggerCompatible', 'triggerFailOnChange'])

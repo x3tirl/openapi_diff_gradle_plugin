@@ -1,0 +1,36 @@
+= OpenAPI Diff Tool Gradle Plugin
+
+== Introduction
+The
+https://github.com/OpenAPITools/openapi-diff[OpenAPI Diff Tool] is useful in comparing 2 specifications. As part of the original repository a maven plugin is included but for those of us that prefer Gradle there was no plugin to be found. This repository contains the code to implement such a plugin.
+
+
+The plugin has been implemented with an Extention, allowing for teh configuration options to be passed in a block assigned with "openapi_diff", and can be used in the build.gradle file
+
+[source,groovy]
+----
+plugins {
+    id 'com.x3t.gradle.plugins.openapi.openapi_diff'
+}
+
+openapi_diff {
+    oldFile = "old_specification.yaml"
+    newFile = "new_specification.yaml"
+}
+----
+
+The functionality can also be used by creating a task in the build.gradle similar to
+
+[source,groovy]
+----
+plugins {
+    id 'com.x3t.gradle.plugins.openapi.openapi_diff'
+}
+
+task triggerCompatible(type: com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTask){
+    oldFile = "old_specification.yaml"
+    newFile = "new_specification.yaml"
+}
+----
+
+== Options

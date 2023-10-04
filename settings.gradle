@@ -1,0 +1,11 @@
+pluginManagement {
+    apply from: './versions.gradle'
+
+    plugins {
+        id 'org.jetbrains.kotlin.jvm' version "$kotlin_version"
+    }
+}
+
+rootProject.name = 'openapi_diff_plugin'
+
+

@@ -1,0 +1,102 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'org.jetbrains.kotlin.jvm'
+    id 'jvm-test-suite'
+ //   id("maven-publish")
+    id("com.gradle.plugin-publish") version "1.1.0"
+
+}
+
+apply from: './versions.gradle'
+
+group = "com.x3t.gradle.plugins"
+version = plugin_version
+
+java {
+    sourceCompatibility = jvm_version
+}
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
+
+dependencies {
+    // Use the Kotlin JUnit 5 integration.
+    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit5'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation gradleTestKit()
+
+    implementation 'org.openapitools.openapidiff:openapi-diff-core:2.1.0-beta.7'
+    implementation 'io.swagger.parser.v3:swagger-parser-v3:2.1.16'
+
+    testImplementation gradleTestKit()
+}
+
+gradlePlugin {
+    plugins {
+        openapi_diff {
+            id = 'com.x3t.gradle.plugins.openapi.openapi_diff'
+            implementationClass = 'com.x3t.gradle.plugins.openapi.OpenapiDiffPlugin'
+        }
+    }
+}
+
+// Add a source set for the functional test suite
+sourceSets {
+    functionalTest {
+    }
+}
+
+/* LOCAL SNAPSHOT DEV */
+// to install for local testing - do not load this plugin when publishing to plugin portal
+// 'maven-publish' and 'com.gradle.plugin-publish' do not interact well with each other
+// https://discuss.gradle.org/t/debug-an-issue-in-publish-plugin-gradle-plugin-not-being-prepended-to-groupid/32720
+if (version.contains('SNAPSHOT')) {
+    apply plugin: 'maven-publish'
+
+    publishing {
+        publications {
+            pluginMaven(MavenPublication){
+            }
+        }
+
+        repositories {
+            maven {
+                name = 'local'
+                url = "file://${projectDir}/repo"
+            }
+        }
+    }
+}
+
+afterEvaluate {
+    task removeLocalRepo(type: Delete){
+        group = 'build'
+        delete "file://${projectDir}/repo"
+    }
+
+    clean.dependsOn removeLocalRepo
+}
+
+configurations.functionalTestImplementation.extendsFrom(configurations.testImplementation)
+configurations.functionalTestRuntimeOnly.extendsFrom(configurations.testRuntimeOnly)
+
+// Add a task to run the functional tests
+tasks.register('functionalTest', Test) {
+    testClassesDirs = sourceSets.functionalTest.output.classesDirs
+    classpath = sourceSets.functionalTest.runtimeClasspath
+    useJUnitPlatform()
+}
+
+gradlePlugin.testSourceSets.add(sourceSets.functionalTest)
+
+tasks.named('check') {
+    // Run the functional tests as part of `check`
+    dependsOn(tasks.functionalTest)
+}
+
+tasks.named('test') {
+    // Use JUnit Jupiter for unit tests.
+    useJUnitPlatform()
+}

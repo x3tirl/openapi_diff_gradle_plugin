@@ -1,0 +1,14 @@
+pluginManagement {
+    apply from: '../versions.gradle'
+
+    plugins {
+        id 'com.x3t.gradle.plugins.openapi.openapi_diff' version "$plugin_version"
+    }
+
+    repositories {
+        maven {
+            url "../repo"
+        }
+        mavenCentral()
+    }
+}

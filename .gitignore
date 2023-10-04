@@ -1,0 +1,8 @@
+.gradle
+.idea
+.DS_Store
+build
+repo
+**/.gradle
+**/build
+!gradle/wrapper/gradle-wrapper.jar
