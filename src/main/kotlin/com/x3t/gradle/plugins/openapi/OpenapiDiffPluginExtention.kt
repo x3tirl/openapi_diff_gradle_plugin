@@ -15,7 +15,7 @@ open class OpenapiDiffPluginExtention(project: Project) {
     val textReport : Property<Boolean>  = objects.property(Boolean::class.java).convention(false)
     val markdownReport : Property<Boolean>  = objects.property(Boolean::class.java).convention(false)
 
-    val oldFile : Property<String> = objects.property(String::class.java)
+    val originalFile : Property<String> = objects.property(String::class.java)
     val newFile : Property<String> = objects.property(String::class.java)
 
     val reportName : Property<String> = objects.property(String::class.java).convention(
