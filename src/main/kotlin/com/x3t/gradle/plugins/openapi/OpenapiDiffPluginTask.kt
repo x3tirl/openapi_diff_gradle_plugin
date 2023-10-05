@@ -117,29 +117,37 @@ abstract class OpenapiDiffPluginTask @Inject constructor(private val objectFacto
         project.mkdir(project.layout.buildDirectory.get())
 
         if( htmlReport.isPresent and htmlReport.get()) {
+            val localOutputFile = "%s.html".format(outputFile)
+            logger.debug("HtmlFile - Report Name: $localOutputFile")
             val htmlRender = HtmlRender()
-            val outputStream = FileOutputStream("%s.html".format(outputFile))
+            val outputStream = FileOutputStream(localOutputFile)
             val outputStreamWriter = OutputStreamWriter(outputStream)
             htmlRender.render(result, outputStreamWriter)
         }
 
         if( jsonReport.isPresent and jsonReport.get()) {
+            val localOutputFile = "%s.json".format(outputFile)
+            logger.debug("JsonFile - Report Name: $localOutputFile")
             val jsonRender = JsonRender()
-            val outputStream = FileOutputStream("%s.json".format(outputFile))
+            val outputStream = FileOutputStream(localOutputFile)
             val outputStreamWriter = OutputStreamWriter(outputStream)
             jsonRender.render(result, outputStreamWriter)
         }
 
         if( textReport.isPresent and textReport.get()) {
+            val localOutputFile = "%s.txt".format(outputFile)
+            logger.debug("PlaintextFile - Report Name: $localOutputFile")
             val consoleRender = ConsoleRender()
-            val outputStream = FileOutputStream("%s.txt".format(outputFile))
+            val outputStream = FileOutputStream(localOutputFile)
             val outputStreamWriter = OutputStreamWriter(outputStream)
             consoleRender.render(result, outputStreamWriter)
         }
 
         if( markdownReport.isPresent and markdownReport.get()) {
+            val localOutputFile = "%s.md".format(outputFile)
+            logger.debug("PlaintextFile - Report Name: $localOutputFile")
             val mdRender = MarkdownRender()
-            val outputStream = FileOutputStream("%s.md".format(outputFile))
+            val outputStream = FileOutputStream(localOutputFile)
             val outputStreamWriter = OutputStreamWriter(outputStream)
             mdRender.render(result, outputStreamWriter)
         }
@@ -160,5 +168,7 @@ abstract class OpenapiDiffPluginTask @Inject constructor(private val objectFacto
         markdownReport.set(false)
         failOnIncompatible.set(false)
         failOnChange.set(false)
+        reportName.set(project.layout.buildDirectory.get().toString() + File.separator + "Openapi_Diff_Report")
+
     }
 }
