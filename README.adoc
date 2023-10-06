@@ -2,7 +2,8 @@
 
 == Introduction
 The
-https://github.com/OpenAPITools/openapi-diff[OpenAPI Diff Tool] is useful in comparing 2 specifications. As part of the original repository a maven plugin is included but for those of us that prefer Gradle there was no plugin to be found. This repository contains the code to implement such a plugin.
+https://github.com/OpenAPITools/openapi-diff[OpenAPITools Diff Tool] is useful in comparing 2 specifications. As part of the original repository a maven plugin is included but for those of us that prefer Gradle there was no plugin to be found. This repository contains the code to implement such a plugin.
+
 
 
 The plugin has been implemented with an Extension, allowing for teh configuration options to be passed in a block assigned with "openapi_diff", and can be used in the build.gradle file
@@ -108,4 +109,18 @@ Another way to test the plugin is to run the following from teh root directory.
 ----
 
 This will run JUnit tests and will trigger TestKit tests with the functionalTest task.
+
+== Publish Plugin
+
+To publish the plugin you need to
+
+. Ensure the API key and secrent, for x3tadmin, have been added to ~/.gradle/gradle.properties
+. The version string has been updated to remove "-SNAPSHOT" and is greater than the last published version.
+
+You then need to open a terminal and run
+
+[source,bash]
+----
+./gradelw publishPlugins
+----
 
