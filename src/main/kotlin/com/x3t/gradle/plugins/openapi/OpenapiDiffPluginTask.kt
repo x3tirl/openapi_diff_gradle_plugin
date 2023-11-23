@@ -157,7 +157,7 @@ abstract class OpenapiDiffPluginTask @Inject constructor(private val objectFacto
         }
 
         if(failOnIncompatible.isPresent and failOnIncompatible.get() and !result.isCompatible){
-            throw GradleException("The specifications do not match and the build settings specify to fail if changes break compatability.")
+            throw GradleException("The specifications do not match and the build settings specify to fail if changes break compatibility.")
         }
     }
 
