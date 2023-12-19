@@ -45,6 +45,12 @@ task createMarkdownReport(type: com.x3t.gradle.plugins.openapi.OpenapiDiffPlugin
     markdownReport.set(true)
 }
 
+task createAsciidocReport(type: com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTask){
+    originalFile = "${projectDir}/missing_property_1.yaml"
+    newFile = "${projectDir}/missing_property_2.yaml"
+    asciidocReport.set(true)
+}
+
 task createDifferentReport(type: com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTask){
     originalFile = "${projectDir}/missing_property_1.yaml"
     newFile = "${projectDir}/missing_property_2.yaml"
@@ -53,4 +59,4 @@ task createDifferentReport(type: com.x3t.gradle.plugins.openapi.OpenapiDiffPlugi
 }
 
 task testTasks(dependsOn: ['triggerCompatible', 'triggerFailOnChange'])
-task testReports(dependsOn: ['createTextReport', 'createHtmlReport', 'createJsonReport', 'createMarkdownReport', 'createDifferentReport'])
+task testReports(dependsOn: ['createTextReport', 'createHtmlReport', 'createJsonReport', 'createMarkdownReport', 'createDifferentReport', 'createAsciidocReport'])

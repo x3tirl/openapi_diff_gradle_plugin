@@ -255,6 +255,41 @@ class TestPluginFunctionalTest {
         assertTrue(data.contains("* Deleted property `childProperty` (object)"))
     }
 
+    @Test fun canCreateAsciidocReport() {
+        // Set up the test build
+        settingsFile.writeText("")
+        buildFile.writeText("""
+            plugins {
+                id('com.x3t.gradle.plugins.openapi.openapi_diff')
+            }
+            
+            openapi_diff {
+                originalFile = "${projectDir}/missing_1.yaml"
+                newFile = "${projectDir}/missing_2.yaml"
+                asciidocReport.set(true)
+            }
+        """.trimIndent())
+
+        Files.copy(missingFile1,testFile1.toPath())
+        Files.copy(missingFile2,testFile2.toPath())
+
+        // Run the build
+        val runner = GradleRunner.create()
+        runner.forwardOutput()
+        runner.withPluginClasspath()
+        runner.withArguments("openapi_diff")
+        runner.withProjectDir(projectDir)
+        val result = runner.build()
+
+        // Verify the result
+        assertTrue(result.toString().isNotEmpty())
+        val reportPath = projectDir.resolve("build/Openapi_Diff_Report.adoc")
+        val data = reportPath.readText()
+
+        assertTrue(Files.exists(reportPath.toPath()))
+        assertTrue(data.contains("NOTE: API changes are backward compatible"))
+    }
+
     @Test fun canChangeReportName() {
         // Set up the test build
         settingsFile.writeText("")

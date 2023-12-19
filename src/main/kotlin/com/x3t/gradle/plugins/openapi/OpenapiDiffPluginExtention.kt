@@ -14,6 +14,7 @@ open class OpenapiDiffPluginExtention(project: Project) {
     val jsonReport : Property<Boolean>  = objects.property(Boolean::class.java).convention(false)
     val textReport : Property<Boolean>  = objects.property(Boolean::class.java).convention(false)
     val markdownReport : Property<Boolean>  = objects.property(Boolean::class.java).convention(false)
+    val asciidocReport : Property<Boolean>  = objects.property(Boolean::class.java).convention(false)
 
     val originalFile : Property<String> = objects.property(String::class.java)
     val newFile : Property<String> = objects.property(String::class.java)
@@ -35,5 +36,6 @@ open class OpenapiDiffPluginExtention(project: Project) {
         jsonReport.set(false)
         textReport.set(false)
         markdownReport.set(false)
+        asciidocReport.set(false)
     }
 }

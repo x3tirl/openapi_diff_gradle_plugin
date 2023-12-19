@@ -1,5 +1,5 @@
 ext {
     jvm_version = 1.17
     kotlin_version = '1.9.0'
-    plugin_version = '1.0-SNAPSHOT'
+    plugin_version = '1.0.1-SNAPSHOT'
 }
