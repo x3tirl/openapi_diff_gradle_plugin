@@ -15,6 +15,7 @@ import org.openapitools.openapidiff.core.output.ConsoleRender
 import org.openapitools.openapidiff.core.output.HtmlRender
 import org.openapitools.openapidiff.core.output.JsonRender
 import org.openapitools.openapidiff.core.output.MarkdownRender
+import org.openapitools.openapidiff.core.output.AsciidocRender
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStreamWriter
@@ -46,6 +47,10 @@ abstract class OpenapiDiffPluginTask @Inject constructor(private val objectFacto
     @get:Optional
     @get:Input
     abstract val markdownReport : Property<Boolean>
+
+    @get:Optional
+    @get:Input
+    abstract val asciidocReport : Property<Boolean>
 
     @get:Optional
     @get:Input
@@ -145,11 +150,20 @@ abstract class OpenapiDiffPluginTask @Inject constructor(private val objectFacto
 
         if( markdownReport.isPresent and markdownReport.get()) {
             val localOutputFile = "%s.md".format(outputFile)
-            logger.debug("PlaintextFile - Report Name: $localOutputFile")
+            logger.debug("MarkdownFile - Report Name: $localOutputFile")
             val mdRender = MarkdownRender()
             val outputStream = FileOutputStream(localOutputFile)
             val outputStreamWriter = OutputStreamWriter(outputStream)
             mdRender.render(result, outputStreamWriter)
+        }
+
+        if( asciidocReport.isPresent and asciidocReport.get()) {
+            val localOutputFile = "%s.adoc".format(outputFile)
+            logger.debug("AsciiDocFile - Report Name: $localOutputFile")
+            val asciidocRender = AsciidocRender()
+            val outputStream = FileOutputStream(localOutputFile)
+            val outputStreamWriter = OutputStreamWriter(outputStream)
+            asciidocRender.render(result, outputStreamWriter)
         }
 
         if(failOnChange.isPresent and failOnChange.get() and !result.isUnchanged){
@@ -166,9 +180,9 @@ abstract class OpenapiDiffPluginTask @Inject constructor(private val objectFacto
         jsonReport.set(false)
         textReport.set(false)
         markdownReport.set(false)
+        asciidocReport.set(false)
         failOnIncompatible.set(false)
         failOnChange.set(false)
         reportName.set(project.layout.buildDirectory.get().toString() + File.separator + "Openapi_Diff_Report")
-
     }
 }

@@ -6,7 +6,7 @@ https://github.com/OpenAPITools/openapi-diff[OpenAPITools Diff Tool] is useful i
 
 
 
-The plugin has been implemented with an Extension, allowing for teh configuration options to be passed in a block assigned with "openapi_diff", and can be used in the build.gradle file
+The plugin has been implemented with an Extension, allowing for the configuration options to be passed in a block assigned with "openapi_diff", and can be used in the build.gradle file
 
 [source,groovy]
 ----
@@ -51,7 +51,7 @@ task triggerCompatible(type: com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTas
 |failOnChange |Property<Boolean> |false |No |Set to true if you wish for the build to fail on any changes.
 
 
-|failOnIncompatible |Property<Boolean> |false |No |Set to ture if you wish for the build to fail on incompatible changes.
+|failOnIncompatible |Property<Boolean> |false |No |Set to true if you wish for the build to fail on incompatible changes.
 
 |htmlReport |Property<Boolean> |false |No |Enable to create a comparison report in HTML format.
 
@@ -60,6 +60,8 @@ task triggerCompatible(type: com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTas
 |textReport |Property<Boolean> |false |No |Enable to create a comparison report Plaintext format.
 
 |markdownReport |Property<Boolean> |false |No |Enable to create a comparison report Markdown format.
+
+|asciidocReport |Property<Boolean> |false |No |Enable to create a comparison report Asciidoc format.
 
 |reportName |Property<String> | "build/Openapi_Diff_Report" |No |The location and name to use for any report file.
 |===
@@ -74,6 +76,7 @@ If this is left as default then the reports will be named
 |"build/Openapi_Diff_Report.json"
 |"build/Openapi_Diff_Report.md"
 |"build/Openapi_Diff_Report.html"
+|"build/Openapi_Diff_Report.adoc"
 |===
 
 depending on which options are enabled.
@@ -101,7 +104,7 @@ If the version is set with "-SNAPSHOT" it will automatically publish locally to 
 
 To perform testing local you can run the Gradle build in the demo sub-directory. This will use the ./repo directory to source the plugin for testing.
 
-Another way to test the plugin is to run the following from teh root directory.
+Another way to test the plugin is to run the following from the root directory.
 
 [source,bash]
 ----
@@ -114,7 +117,7 @@ This will run JUnit tests and will trigger TestKit tests with the functionalTest
 
 To publish the plugin you need to
 
-. Ensure the API key and secrent, for x3tadmin, have been added to ~/.gradle/gradle.properties
+. Ensure the API key and secret, for x3tadmin, have been added to ~/.gradle/gradle.properties
 . The version string has been updated to remove "-SNAPSHOT" and is greater than the last published version.
 
 You then need to open a terminal and run

@@ -39,6 +39,7 @@ class OpenapiDiffPluginTest {
         assertNotEquals(true, task.jsonReport.get())
         assertNotEquals(true, task.textReport.get())
         assertNotEquals(true, task.markdownReport.get())
+        assertNotEquals(true, task.asciidocReport.get())
     }
 
     @Test
@@ -74,6 +75,23 @@ class OpenapiDiffPluginTest {
     }
 
     @Test
+    fun `Test Asciidoc Report Parameters passed correctly`() {
+        val project = ProjectBuilder.builder().build()
+        project.pluginManager.apply("com.x3t.gradle.plugins.openapi.openapi_diff")
+        (project.extensions.getByName("openapi_diff") as OpenapiDiffPluginExtention).apply {
+            asciidocReport.set(true)
+        }
+
+        val task = project.tasks.getByName("openapi_diff") as OpenapiDiffPluginTask
+
+        assertEquals(true, task.asciidocReport.get())
+        assertNotEquals(true, task.htmlReport.get())
+        assertNotEquals(true, task.textReport.get())
+        assertNotEquals(true, task.jsonReport.get())
+        assertNotEquals(true, task.markdownReport.get())
+    }
+
+    @Test
     fun `Test Text Report Parameters passed correctly`() {
         val project = ProjectBuilder.builder().build()
         project.pluginManager.apply("com.x3t.gradle.plugins.openapi.openapi_diff")
@@ -87,5 +105,6 @@ class OpenapiDiffPluginTest {
         assertNotEquals(true, task.htmlReport.get())
         assertNotEquals(true, task.markdownReport.get())
         assertNotEquals(true, task.jsonReport.get())
+        assertNotEquals(true, task.asciidocReport.get())
     }
 }

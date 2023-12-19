@@ -15,6 +15,7 @@ class OpenapiDiffPlugin : Plugin<Project> {
             it.jsonReport.set(diffExtention.jsonReport)
             it.textReport.set(diffExtention.textReport)
             it.markdownReport.set(diffExtention.markdownReport)
+            it.asciidocReport.set(diffExtention.asciidocReport)
             it.reportName.set(diffExtention.reportName)
             it.originalFile.set(diffExtention.originalFile)
             it.newFile.set(diffExtention.newFile)
