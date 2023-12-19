@@ -124,6 +124,6 @@ You then need to open a terminal and run
 
 [source,bash]
 ----
-./gradelw publishPlugins
+./gradlew publishPlugins
 ----
 
