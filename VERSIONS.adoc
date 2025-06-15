@@ -1,0 +1,18 @@
+= Version History
+== Version 1.1.0
+Updated to the following versions
+
+* Gradle 8.7
+* Java 21
+* Kotlin 2.1.21
+* Swagger Parser 2.1.29
+* OpenAPI Diff Core 2.1.2
+
+== Version 1.0.2
+* Add fix for failOnIncompatible issue
+* Fix typos in README
+
+== Version 1.0.1
+* Add fix for failOnIncompatible issue
+* Fix typos in README
+* Minor updates to OpenAPI Diff version
