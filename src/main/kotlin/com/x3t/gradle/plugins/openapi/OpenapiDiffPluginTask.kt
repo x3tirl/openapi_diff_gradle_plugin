@@ -134,13 +134,13 @@ abstract class OpenapiDiffPluginTask @Inject constructor() : DefaultTask() {
     }
 
     init {
-        htmlReport.set(false)
-        jsonReport.set(false)
-        textReport.set(false)
-        markdownReport.set(false)
-        asciidocReport.set(false)
-        failOnIncompatible.set(false)
-        failOnChange.set(false)
+        htmlReport.convention(false)
+        jsonReport.convention(false)
+        textReport.convention(false)
+        markdownReport.convention(false)
+        asciidocReport.convention(false)
+        failOnIncompatible.convention(false)
+        failOnChange.convention(false)
         // Set default buildDirectory if not already set (for tasks created directly)
         if (!buildDirectory.isPresent) {
             buildDirectory.convention(project.layout.buildDirectory)
