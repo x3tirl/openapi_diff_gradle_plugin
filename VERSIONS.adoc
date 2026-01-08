@@ -1,5 +1,10 @@
 = Version History
 
+== Version 1.2.0
+
+* Merge of Pull request 22, to add Gradle cache functionality.
+* Gradle 9.2.1
+
 == Version 1.1.0
 Updated to the following versions
 
