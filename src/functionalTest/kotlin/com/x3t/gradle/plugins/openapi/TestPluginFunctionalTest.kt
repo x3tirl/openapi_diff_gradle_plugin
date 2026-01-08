@@ -1,9 +1,9 @@
 package com.x3t.gradle.plugins.openapi
 
-import org.gradle.internal.impldep.org.junit.Assert.assertThrows
-import org.gradle.internal.impldep.org.junit.Assert.assertTrue
 import org.gradle.testkit.runner.GradleRunner
 import org.gradle.testkit.runner.UnexpectedBuildFailure
+import org.junit.jupiter.api.Assertions.assertThrows
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.io.TempDir
 import java.io.File
 import java.io.InputStream

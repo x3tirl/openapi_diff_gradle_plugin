@@ -29,7 +29,7 @@ class OpenapiDiffPluginTest {
     fun `Test Html Report Parameters passed correctly`() {
         val project = ProjectBuilder.builder().build()
         project.pluginManager.apply("com.x3t.gradle.plugins.openapi.openapi_diff")
-        (project.extensions.getByName("openapi_diff") as OpenapiDiffPluginExtention).apply {
+        (project.extensions.getByName("openapi_diff") as OpenapiDiffPluginExtension).apply {
             htmlReport.set(true)
         }
 
@@ -46,7 +46,7 @@ class OpenapiDiffPluginTest {
     fun `Test JSON Report Parameters passed correctly`() {
         val project = ProjectBuilder.builder().build()
         project.pluginManager.apply("com.x3t.gradle.plugins.openapi.openapi_diff")
-        (project.extensions.getByName("openapi_diff") as OpenapiDiffPluginExtention).apply {
+        (project.extensions.getByName("openapi_diff") as OpenapiDiffPluginExtension).apply {
             jsonReport.set(true)
         }
 
@@ -62,7 +62,7 @@ class OpenapiDiffPluginTest {
     fun `Test Markdown Report Parameters passed correctly`() {
         val project = ProjectBuilder.builder().build()
         project.pluginManager.apply("com.x3t.gradle.plugins.openapi.openapi_diff")
-        (project.extensions.getByName("openapi_diff") as OpenapiDiffPluginExtention).apply {
+        (project.extensions.getByName("openapi_diff") as OpenapiDiffPluginExtension).apply {
             markdownReport.set(true)
         }
 
@@ -78,7 +78,7 @@ class OpenapiDiffPluginTest {
     fun `Test Asciidoc Report Parameters passed correctly`() {
         val project = ProjectBuilder.builder().build()
         project.pluginManager.apply("com.x3t.gradle.plugins.openapi.openapi_diff")
-        (project.extensions.getByName("openapi_diff") as OpenapiDiffPluginExtention).apply {
+        (project.extensions.getByName("openapi_diff") as OpenapiDiffPluginExtension).apply {
             asciidocReport.set(true)
         }
 
@@ -95,7 +95,7 @@ class OpenapiDiffPluginTest {
     fun `Test Text Report Parameters passed correctly`() {
         val project = ProjectBuilder.builder().build()
         project.pluginManager.apply("com.x3t.gradle.plugins.openapi.openapi_diff")
-        (project.extensions.getByName("openapi_diff") as OpenapiDiffPluginExtention).apply {
+        (project.extensions.getByName("openapi_diff") as OpenapiDiffPluginExtension).apply {
             textReport.set(true)
         }
 

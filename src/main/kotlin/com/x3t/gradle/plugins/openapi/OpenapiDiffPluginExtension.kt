@@ -5,7 +5,7 @@ import org.gradle.api.Project
 import org.gradle.api.provider.Property
 import java.io.File
 
-open class OpenapiDiffPluginExtention(project: Project) {
+open class OpenapiDiffPluginExtension(project: Project) {
     private val objects = project.objects
 
     val failOnChange : Property<Boolean> = objects.property(Boolean::class.java).convention(false)
