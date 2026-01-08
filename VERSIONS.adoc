@@ -1,7 +1,10 @@
 = Version History
 
-== Version 1.2.0
+== Version 1.2.1
+* Swagger Parser 2.1.37
+* OpenAPI Diff Core 2.1.6
 
+== Version 1.2.0
 * Merge of Pull request 22, to add Gradle cache functionality.
 * Gradle 9.2.1
 
