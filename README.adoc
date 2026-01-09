@@ -2,7 +2,7 @@
 
 == Introduction
 The
-https://github.com/OpenAPITools/openapi-diff[OpenAPITools Diff Tool] is useful in comparing 2 specifications. As part of the original repository a maven plugin is included but for those of us that prefer Gradle there was no plugin to be found. This repository contains the code to implement such a plugin.
+https://github.com/OpenAPITools/openapi-diff[OpenAPITools Diff Tool] is useful in comparing 2 OpenAPI specification files. As part of the original repository a maven plugin is included but for those of us that prefer Gradle there was no plugin to be found. This repository contains the code to implement such a plugin.
 
 
 
@@ -103,6 +103,27 @@ If the version is set with "-SNAPSHOT" it will automatically publish locally to 
 === Local Testing
 
 To perform testing local you can run the Gradle build in the demo sub-directory. This will use the ./repo directory to source the plugin for testing.
+[NOTE]
+====
+You must run "./gradlew publish" in the base directory to create the repo sub-directory containing the plugin to be tested.
+====
+
+[source,bash]
+----
+cd demo
+
+../gradlew testTasks             # Expect a build failure due to one of the tasks being configured to fail if the files are different (below)
+../gradlew triggerCompatible     # Trigger the build and fail if the 2 files are not compatible OpenAPI versions
+../gradlew triggerFailOnChange   # Trigger the build and fail if the files are different
+
+../gradlew testReports           # Will generate the reports in the different formats (below)
+../gradlew createAsciidocReport  # Create a report in AsciiDoc format
+../gradlew createDifferentReport # Create a report in a text format with a specified name 
+../gradlew createHtmlReport      # Create a report in HTML format
+../gradlew createJsonReport      # Create a reoprt in JSON format
+../gradlew createMarkdownReport  # Create a report in MarkDown format
+../gradlew createTextReport      # Create a report in a text format
+----
 
 Another way to test the plugin is to run the following from the root directory.
 
@@ -113,7 +134,7 @@ Another way to test the plugin is to run the following from the root directory.
 
 This will run JUnit tests and will trigger TestKit tests with the functionalTest task.
 
-== Publish Plugin
+== Publish Plugin (For internal use)
 
 To publish the plugin you need to
 
