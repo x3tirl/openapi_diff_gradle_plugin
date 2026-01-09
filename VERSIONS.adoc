@@ -3,6 +3,8 @@
 == Version 1.2.1
 * Swagger Parser 2.1.37
 * OpenAPI Diff Core 2.1.6
+* Kotlin 2.2.20 (align to embeded version - https://docs.gradle.org/current/userguide/compatibility.html#kotlin)
+* Fix some issues raised
 
 == Version 1.2.0
 * Merge of Pull request 22, to add Gradle cache functionality.
