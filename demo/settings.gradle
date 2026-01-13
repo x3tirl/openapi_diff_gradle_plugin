@@ -7,7 +7,7 @@ pluginManagement {
 
     repositories {
         maven {
-            url "../repo"
+            url = "../repo"
         }
         mavenCentral()
     }

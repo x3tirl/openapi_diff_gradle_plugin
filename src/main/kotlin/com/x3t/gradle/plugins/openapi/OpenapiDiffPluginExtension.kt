@@ -19,23 +19,9 @@ open class OpenapiDiffPluginExtension(project: Project) {
     val originalFile : Property<String> = objects.property(String::class.java)
     val newFile : Property<String> = objects.property(String::class.java)
 
-    val reportName : Property<String> = objects.property(String::class.java).convention(
-        project.layout.buildDirectory.get().toString() + File.separator + "Openapi_Diff_Report"
-    )
+    val reportName : Property<String> = objects.property(String::class.java)
 
 
     init {
-        applyDefaults()
-    }
-
-    @Suppress("MemberVisibilityCanBePrivate")
-    fun applyDefaults() {
-        failOnChange.set(false)
-        failOnIncompatible.set(false)
-        htmlReport.set(false)
-        jsonReport.set(false)
-        textReport.set(false)
-        markdownReport.set(false)
-        asciidocReport.set(false)
     }
 }

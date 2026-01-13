@@ -55,7 +55,7 @@ tasks.register('createDifferentReport', com.x3t.gradle.plugins.openapi.OpenapiDi
     originalFile = "${projectDir}/missing_property_1.yaml"
     newFile = "${projectDir}/missing_property_2.yaml"
     textReport.set(true)
-    reportName = "${projectDir}/build/TestReport"
+    reportName = "build/TestReport"
 }
 
 tasks.register('testTasks') {
@@ -63,5 +63,10 @@ tasks.register('testTasks') {
 }
 
 tasks.register('testReports') {
-  dependsOn('createTextReport', 'createHtmlReport',  'createJsonReport', 'createMarkdownReport', 'createDifferentReport', 'createAsciidocReport')
+  dependsOn('openapi_diff','createTextReport', 'createHtmlReport',  'createJsonReport', 'createMarkdownReport', 'createDifferentReport', 'createAsciidocReport')
+}
+
+tasks.register('clean', Delete) {
+    group = 'build'
+    delete "file://${projectDir}/build"
 }
