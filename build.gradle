@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.jvm'
     id 'jvm-test-suite'
  //   id("maven-publish")
-    id("com.gradle.plugin-publish") version "1.1.0"
+    id 'com.gradle.plugin-publish'
 
 }
 
@@ -27,8 +27,8 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation gradleTestKit()
 
-    implementation 'org.openapitools.openapidiff:openapi-diff-core:2.1.2'
-    implementation 'io.swagger.parser.v3:swagger-parser-v3:2.1.29'
+    implementation 'org.openapitools.openapidiff:openapi-diff-core:2.1.6'
+    implementation 'io.swagger.parser.v3:swagger-parser-v3:2.1.37'
 
     testImplementation gradleTestKit()
 }
@@ -77,7 +77,7 @@ if (version.contains('SNAPSHOT')) {
 }
 
 afterEvaluate {
-    task removeLocalRepo(type: Delete){
+    tasks.register('removeLocalRepo', Delete) {
         group = 'build'
         delete "file://${projectDir}/repo"
     }
