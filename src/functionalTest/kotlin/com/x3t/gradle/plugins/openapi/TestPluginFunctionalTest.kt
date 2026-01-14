@@ -36,8 +36,8 @@ class TestPluginFunctionalTest {
             }
             
             openapi_diff {
-                originalFile = "${projectDir}/missing_1.yaml"
-                newFile = "${projectDir}/missing_2.yaml"
+                originalFile = file("${projectDir}/missing_1.yaml")
+                newFile = file("${projectDir}/missing_2.yaml")
             }
         """.trimIndent())
 
@@ -65,8 +65,8 @@ class TestPluginFunctionalTest {
             }
             
             task triggerCompatible(type: com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTask){
-                originalFile.set("${projectDir}/missing_1.yaml")
-                newFile.set("${projectDir}/missing_2.yaml")
+                originalFile.set(file("${projectDir}/missing_1.yaml"))
+                newFile.set(file("${projectDir}/missing_2.yaml"))
                 failOnIncompatible.set(true)
             }
         """.trimIndent())
@@ -95,8 +95,8 @@ class TestPluginFunctionalTest {
             }
             
             task triggerCompatible(type: com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTask){
-                originalFile.set("${projectDir}/missing_1.yaml")
-                newFile.set("${projectDir}/missing_2.yaml")
+                originalFile.set(file("${projectDir}/missing_1.yaml"))
+                newFile.set(file("${projectDir}/missing_2.yaml"))
                 failOnChange.set(true)
             }
         """.trimIndent())
@@ -124,8 +124,8 @@ class TestPluginFunctionalTest {
             }
             
             openapi_diff {
-                originalFile = "${projectDir}/missing_1.yaml"
-                newFile = "${projectDir}/missing_2.yaml"
+                originalFile = file("${projectDir}/missing_1.yaml")
+                newFile = file("${projectDir}/missing_2.yaml")
                 textReport.set(true)
             }
         """.trimIndent())
@@ -159,8 +159,8 @@ class TestPluginFunctionalTest {
             }
             
             openapi_diff {
-                originalFile = "${projectDir}/missing_1.yaml"
-                newFile = "${projectDir}/missing_2.yaml"
+                originalFile = file("${projectDir}/missing_1.yaml")
+                newFile = file("${projectDir}/missing_2.yaml")
                 htmlReport.set(true)
             }
         """.trimIndent())
@@ -194,8 +194,8 @@ class TestPluginFunctionalTest {
             }
             
             openapi_diff {
-                originalFile = "${projectDir}/missing_1.yaml"
-                newFile = "${projectDir}/missing_2.yaml"
+                originalFile = file("${projectDir}/missing_1.yaml")
+                newFile = file("${projectDir}/missing_2.yaml")
                 jsonReport.set(true)
             }
         """.trimIndent())
@@ -229,8 +229,8 @@ class TestPluginFunctionalTest {
             }
             
             openapi_diff {
-                originalFile = "${projectDir}/missing_1.yaml"
-                newFile = "${projectDir}/missing_2.yaml"
+                originalFile = file("${projectDir}/missing_1.yaml")
+                newFile = file("${projectDir}/missing_2.yaml")
                 markdownReport.set(true)
             }
         """.trimIndent())
@@ -264,8 +264,8 @@ class TestPluginFunctionalTest {
             }
             
             openapi_diff {
-                originalFile = "${projectDir}/missing_1.yaml"
-                newFile = "${projectDir}/missing_2.yaml"
+                originalFile = file("${projectDir}/missing_1.yaml")
+                newFile = file("${projectDir}/missing_2.yaml")
                 asciidocReport.set(true)
             }
         """.trimIndent())
@@ -299,8 +299,8 @@ class TestPluginFunctionalTest {
             }
             
             openapi_diff {
-                originalFile = "${projectDir}/missing_1.yaml"
-                newFile = "${projectDir}/missing_2.yaml"
+                originalFile = file("${projectDir}/missing_1.yaml")
+                newFile = file("${projectDir}/missing_2.yaml")
                 markdownReport.set(true)
                 reportName.set("${projectDir}/build/TestReport")
             }

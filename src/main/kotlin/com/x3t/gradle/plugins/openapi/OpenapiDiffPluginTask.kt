@@ -4,6 +4,7 @@ import io.swagger.v3.parser.core.models.AuthorizationValue
 import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
 import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.*
 import org.gradle.api.tasks.options.Option
@@ -56,20 +57,20 @@ abstract class OpenapiDiffPluginTask @Inject constructor() : DefaultTask() {
     @get:Internal
     abstract val buildDirectory: DirectoryProperty
 
-    @get:Input
+    @get:InputFile
     @get:Option(option = "originalFile", description = "The original OpenAPI specification file")
-    abstract val originalFile: Property<String>
+    abstract val originalFile: RegularFileProperty
 
-    @get:Input
+    @get:InputFile
     @get:Option(option = "newFile", description = "The new OpenAPI specification file")
-    abstract val newFile: Property<String>
-
+    abstract val newFile: RegularFileProperty
 
     @Suppress("unused")
     @TaskAction
     fun doWork() {
         val auths: List<AuthorizationValue>? = null
-        val result = OpenApiCompare.fromLocations(originalFile.get(), newFile.get(), auths)
+        //val result = OpenApiCompare.fromLocations(originalFile.get(), newFile.get(), auths)
+        val result = OpenApiCompare.fromFiles(originalFile.asFile.get(), newFile.asFile.get(), auths)
 
         val outputFile: String = if (reportName.isPresent) {
             reportName.get().split(".")[0]
