@@ -59,13 +59,13 @@ task triggerCompatible(type: com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTas
 |Required
 |Description
 
-|originalFile |Property<String> |1.x |"" |Yes |Filename for the original version of the specification.
+|originalFile |Property<String> |1.x |*No Default* |Yes |Filename for the original version of the specification.
 
-|newFile |Property<String> |1.x |"" |Yes |Filename for the original version of the specification.
+|newFile |Property<String> |1.x |*No Default* |Yes |Filename for the original version of the specification.
 
-|originalFile |RegularFileProperty |2.x |"" |Yes |File for the original version of the specification.
+|originalFile |RegularFileProperty |2.x |*No Default* |Yes |File for the original version of the specification.
 
-|newFile |RegularFileProperty |2.x |"" |Yes |File for the original version of the specification.
+|newFile |RegularFileProperty |2.x |*No Default* |Yes |File for the original version of the specification.
 
 |failOnChange |Property<Boolean> |false |No |Set to true if you wish for the build to fail on any changes.
 
