@@ -1,5 +1,10 @@
 = Version History
 
+== Version 2.0.0
+* Fixed #19
+* Fixed #20
+* As a result of the above there is a breaking change, Plugin definition now uses a file instaed of a String for a file path
+
 == Version 1.2.1
 * Swagger Parser 2.1.37
 * OpenAPI Diff Core 2.1.6
