@@ -3,57 +3,57 @@ plugins {
 }
 
 openapi_diff {
-    originalFile = "${projectDir}/missing_property_1.yaml"
-    newFile = "${projectDir}/missing_property_2.yaml"
+    originalFile = file("${projectDir}/missing_property_1.yaml")
+    newFile = file("${projectDir}/missing_property_2.yaml")
     reportName = "build/OrigReport"
     markdownReport.set(true)
 }
 
 tasks.register('triggerCompatible', com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTask) {
-    originalFile = "${projectDir}/missing_property_1.yaml"
-    newFile = "${projectDir}/missing_property_2.yaml"
+    originalFile = file("${projectDir}/missing_property_1.yaml")
+    newFile = file("${projectDir}/missing_property_2.yaml")
     failOnIncompatible.set(true)
 }
 
 tasks.register('triggerFailOnChange', com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTask) {
-    originalFile = "${projectDir}/missing_property_1.yaml"
-    newFile = "${projectDir}/missing_property_2.yaml"
+    originalFile = file("${projectDir}/missing_property_1.yaml")
+    newFile = file("${projectDir}/missing_property_2.yaml")
     failOnChange.set(true)
 }
 
 tasks.register('createTextReport', com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTask) {
-    originalFile = "${projectDir}/missing_property_1.yaml"
-    newFile = "${projectDir}/missing_property_2.yaml"
+    originalFile = file("${projectDir}/missing_property_1.yaml")
+    newFile = file("${projectDir}/missing_property_2.yaml")
     textReport.set(true)
 }
 
 tasks.register('createHtmlReport', com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTask) {
-    originalFile = "${projectDir}/missing_property_1.yaml"
-    newFile = "${projectDir}/missing_property_2.yaml"
+    originalFile = file("${projectDir}/missing_property_1.yaml")
+    newFile = file("${projectDir}/missing_property_2.yaml")
     htmlReport.set(true)
 }
 
 tasks.register('createJsonReport', com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTask) {
-    originalFile = "${projectDir}/missing_property_1.yaml"
-    newFile = "${projectDir}/missing_property_2.yaml"
+    originalFile = file("${projectDir}/missing_property_1.yaml")
+    newFile = file("${projectDir}/missing_property_2.yaml")
     jsonReport.set(true)
 }
 
 tasks.register('createMarkdownReport', com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTask) {
-    originalFile = "${projectDir}/missing_property_1.yaml"
-    newFile = "${projectDir}/missing_property_2.yaml"
+    originalFile = file("${projectDir}/missing_property_1.yaml")
+    newFile = file("${projectDir}/missing_property_2.yaml")
     markdownReport.set(true)
 }
 
 tasks.register('createAsciidocReport', com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTask) {
-    originalFile = "${projectDir}/missing_property_1.yaml"
-    newFile = "${projectDir}/missing_property_2.yaml"
+    originalFile = file("${projectDir}/missing_property_1.yaml")
+    newFile = file("${projectDir}/missing_property_2.yaml")
     asciidocReport.set(true)
 }
 
 tasks.register('createDifferentReport', com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTask) {
-    originalFile = "${projectDir}/missing_property_1.yaml"
-    newFile = "${projectDir}/missing_property_2.yaml"
+    originalFile = file("${projectDir}/missing_property_1.yaml")
+    newFile = file("${projectDir}/missing_property_2.yaml")
     textReport.set(true)
     reportName = "build/TestReport"
 }
