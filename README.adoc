@@ -67,22 +67,22 @@ task triggerCompatible(type: com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTas
 
 |newFile |RegularFileProperty |2.x |*No Default* |Yes |File for the original version of the specification.
 
-|failOnChange |Property<Boolean> |false |No |Set to true if you wish for the build to fail on any changes.
+|failOnChange |Property<Boolean> |1.x,2.x |false |No |Set to true if you wish for the build to fail on any changes.
 
 
-|failOnIncompatible |Property<Boolean> |false |No |Set to true if you wish for the build to fail on incompatible changes.
+|failOnIncompatible |Property<Boolean> |1.x,2.x |false |No |Set to true if you wish for the build to fail on incompatible changes.
 
-|htmlReport |Property<Boolean> |false |No |Enable to create a comparison report in HTML format.
+|htmlReport |Property<Boolean> |1.x,2.x |false |No |Enable to create a comparison report in HTML format.
 
-|jsonReport |Property<Boolean> |false |No |Enable to create a comparison report in JSON format.
+|jsonReport |Property<Boolean> |1.x,2.x |false |No |Enable to create a comparison report in JSON format.
 
-|textReport |Property<Boolean> |false |No |Enable to create a comparison report Plaintext format.
+|textReport |Property<Boolean> |1.x,2.x |false |No |Enable to create a comparison report Plaintext format.
 
-|markdownReport |Property<Boolean> |false |No |Enable to create a comparison report Markdown format.
+|markdownReport |Property<Boolean> |1.x,2.x |false |No |Enable to create a comparison report Markdown format.
 
-|asciidocReport |Property<Boolean> |false |No |Enable to create a comparison report Asciidoc format.
+|asciidocReport |Property<Boolean> |1.x,2.x |false |No |Enable to create a comparison report Asciidoc format.
 
-|reportName |Property<String> | "build/Openapi_Diff_Report" |No |The location and name to use for any report file.
+|reportName |Property<String> |1.x,2.x | "build/Openapi_Diff_Report" |No |The location and name to use for any report file.
 |===
 
 NOTE: The reportName property is used in the creation of the report files.
