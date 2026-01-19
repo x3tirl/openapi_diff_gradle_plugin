@@ -3,6 +3,7 @@ package com.x3t.gradle.plugins.openapi
 import io.swagger.v3.parser.core.models.AuthorizationValue
 import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
+import org.gradle.api.file.ConfigurableFileCollection
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.provider.Property
@@ -65,6 +66,9 @@ abstract class OpenapiDiffPluginTask @Inject constructor() : DefaultTask() {
     @get:Option(option = "newFile", description = "The new OpenAPI specification file")
     abstract val newFile: RegularFileProperty
 
+    @get:OutputFiles
+    abstract val outputFiles: ConfigurableFileCollection
+
     @Suppress("unused")
     @TaskAction
     fun doWork() {
@@ -79,10 +83,16 @@ abstract class OpenapiDiffPluginTask @Inject constructor() : DefaultTask() {
         }
 
         buildDirectory.get().asFile.mkdirs()
+        // Collect all generated report files
+        val outputFiles = mutableSetOf<File>()
 
         if (htmlReport.isPresent and htmlReport.get()) {
             val localOutputFile = "%s.html".format(outputFile)
             logger.debug("HtmlFile - Report Name: $localOutputFile")
+
+            val output_file = File(localOutputFile).absoluteFile
+            outputFiles.add(output_file)
+
             val htmlRender = HtmlRender()
             val outputStream = FileOutputStream(localOutputFile)
             val outputStreamWriter = OutputStreamWriter(outputStream)
@@ -92,6 +102,10 @@ abstract class OpenapiDiffPluginTask @Inject constructor() : DefaultTask() {
         if (jsonReport.isPresent and jsonReport.get()) {
             val localOutputFile = "%s.json".format(outputFile)
             logger.debug("JsonFile - Report Name: $localOutputFile")
+
+            val output_file = File(localOutputFile).absoluteFile
+            outputFiles.add(output_file)
+
             val jsonRender = JsonRender()
             val outputStream = FileOutputStream(localOutputFile)
             val outputStreamWriter = OutputStreamWriter(outputStream)
@@ -101,6 +115,10 @@ abstract class OpenapiDiffPluginTask @Inject constructor() : DefaultTask() {
         if (textReport.isPresent and textReport.get()) {
             val localOutputFile = "%s.txt".format(outputFile)
             logger.debug("PlaintextFile - Report Name: $localOutputFile")
+
+            val output_file = File(localOutputFile).absoluteFile
+            outputFiles.add(output_file)
+
             val consoleRender = ConsoleRender()
             val outputStream = FileOutputStream(localOutputFile)
             val outputStreamWriter = OutputStreamWriter(outputStream)
@@ -110,6 +128,10 @@ abstract class OpenapiDiffPluginTask @Inject constructor() : DefaultTask() {
         if (markdownReport.isPresent and markdownReport.get()) {
             val localOutputFile = "%s.md".format(outputFile)
             logger.debug("MarkdownFile - Report Name: $localOutputFile")
+
+            val output_file = File(localOutputFile).absoluteFile
+            outputFiles.add(output_file)
+
             val mdRender = MarkdownRender()
             val outputStream = FileOutputStream(localOutputFile)
             val outputStreamWriter = OutputStreamWriter(outputStream)
@@ -119,11 +141,17 @@ abstract class OpenapiDiffPluginTask @Inject constructor() : DefaultTask() {
         if (asciidocReport.isPresent and asciidocReport.get()) {
             val localOutputFile = "%s.adoc".format(outputFile)
             logger.debug("AsciiDocFile - Report Name: $localOutputFile")
+
+            val output_file = File(localOutputFile).absoluteFile
+            outputFiles.add(output_file)
+
             val asciidocRender = AsciidocRender()
             val outputStream = FileOutputStream(localOutputFile)
             val outputStreamWriter = OutputStreamWriter(outputStream)
             asciidocRender.render(result, outputStreamWriter)
         }
+
+        this.outputFiles.plus(outputFiles)
 
         if (failOnChange.isPresent and failOnChange.get() and !result.isUnchanged) {
             throw GradleException("The specifications do not match and the build settings state to fail if any change is detected.")
@@ -133,6 +161,7 @@ abstract class OpenapiDiffPluginTask @Inject constructor() : DefaultTask() {
             throw GradleException("The specifications do not match and the build settings specify to fail if changes break compatibility.")
         }
     }
+
 
     init {
         htmlReport.convention(false)

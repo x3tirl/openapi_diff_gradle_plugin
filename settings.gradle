@@ -9,4 +9,8 @@ pluginManagement {
 
 rootProject.name = 'openapi_diff_plugin'
 
-
+buildCache {
+    local {
+        directory = new File(rootDir, 'build-cache')
+    }
+}
