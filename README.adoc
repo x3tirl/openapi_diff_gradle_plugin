@@ -22,6 +22,7 @@ openapi_diff {
 
 The functionality can also be used by creating a task in the build.gradle similar to
 
+.V1.x
 [source,groovy]
 ----
 plugins {
@@ -29,24 +30,42 @@ plugins {
 }
 
 task triggerCompatible(type: com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTask){
-    originalFile = "old_specification.yaml"
-    newFile = "new_specification.yaml"
+    originalFile = "${projectDir}/old_specification.yaml"
+    newFile = "${projectDir}/new_specification.yaml"
+}
+----
+
+.V2.x
+[source,groovy]
+----
+plugins {
+    id 'com.x3t.gradle.plugins.openapi.openapi_diff'
+}
+
+task triggerCompatible(type: com.x3t.gradle.plugins.openapi.OpenapiDiffPluginTask){
+    originalFile = file("${projectDir}/old_specification.yaml")
+    newFile = file("${projectDir}/new_specification.yaml")
 }
 ----
 
 == Options
 
-[%header,cols="1,1,1,1,3"]
+[%header,cols="1,1,1,1,1,3"]
 |===
 |Property name
 |Type
+|Version
 |Default Value
 |Required
 |Description
 
-|originalFile |Property<String> |"" |Yes |Filename for the original version of the specification.
+|originalFile |Property<String> |1.x |"" |Yes |Filename for the original version of the specification.
 
-|newFile |Property<String> |"" |Yes |Filename for the original version of the specification.
+|newFile |Property<String> |1.x |"" |Yes |Filename for the original version of the specification.
+
+|originalFile |RegularFileProperty |2.x |"" |Yes |File for the original version of the specification.
+
+|newFile |RegularFileProperty |2.x |"" |Yes |File for the original version of the specification.
 
 |failOnChange |Property<Boolean> |false |No |Set to true if you wish for the build to fail on any changes.
 
