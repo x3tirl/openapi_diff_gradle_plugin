@@ -44,6 +44,11 @@ gradlePlugin {
             displayName = "OpenAPI Diff Gradle Plugin"
             description = "OpenAPI Diff Plugin allows the comparison of API Specification files in OpenAPI Spec (v2, v3) format."
             tags.set(["openapi", "openapi-3.0", "openapi-2.0", "diff", "kotlin"])
+            compatibility(it) {
+                features {
+                    configurationCache = true
+                }
+            }
         }
     }
 }
